@@ -93,10 +93,10 @@ void Student::setDegreeProgram(DegreeProgram newDegreeProgram)
 }
 void Student::print()
 {
-  std::cout << studentID << " \t ";
-  std::cout << "First Name: " << firstName << " \t ";
-  std::cout << "Last Name: " << lastName << " \t ";
-  std::cout << "Age: " << age << " \t ";
-  std::cout << "daysInCourse: {" << daysInCourses[0] << ", " << daysInCourses[1] << ", " << daysInCourses[2] << "} ";
-  std::cout << "Degree Program: " << degreeProgram << ".";
+  cout << studentID << "\t";
+  cout << "First Name: " << firstName << "\t";
+  cout << "Last Name: " << lastName << "\t";
+  cout << "Age: " << age << "\t";
+  cout << "daysInCourse: {" << daysInCourses[0] << ", " << daysInCourses[1] << ", " << daysInCourses[2] << "} ";
+  cout << "Degree Program: " << degreeProgram << "." << endl;
 }
