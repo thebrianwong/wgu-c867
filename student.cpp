@@ -29,74 +29,92 @@ string Student::getStudentID()
 {
   return this->studentID;
 }
+
 string Student::getFirstName()
 {
   return this->firstName;
 }
+
 string Student::getLastName()
 {
   return this->lastName;
 }
+
 string Student::getEmailAddress()
 {
   return this->emailAddress;
 }
+
 int Student::getAge()
 {
   return this->age;
 }
+
 int Student::getDaysInCourse1()
 {
   return this->daysInCourses[0];
 }
+
 int Student::getDaysInCourse2()
 {
   return this->daysInCourses[1];
 }
+
 int Student::getDaysInCourse3()
 {
   return this->daysInCourses[2];
 }
+
 DegreeProgram Student::getDegreeProgram()
 {
   return this->degreeProgram;
 }
+
 void Student::setStudentID(string newStudentId)
 {
   this->studentID = newStudentId;
 }
+
 void Student::setFirstName(string newFirstName)
 {
   this->firstName = newFirstName;
 }
+
 void Student::setLastName(string newLastName)
 {
   this->lastName = newLastName;
 }
+
 void Student::setEmailAddress(string newEmailAddress)
 {
   this->emailAddress = newEmailAddress;
 }
+
 void Student::setAge(int newAge)
 {
   this->age = newAge;
 }
+
 void Student::setDaysInCourse1(int newDaysInCourse1)
 {
   this->daysInCourses[0] = newDaysInCourse1;
 }
+
 void Student::setDaysInCourse2(int newDaysInCourse2)
 {
   this->daysInCourses[1] = newDaysInCourse2;
 }
+
 void Student::setDaysInCourse3(int newDaysInCourse3)
 {
   this->daysInCourses[2] = newDaysInCourse3;
 }
+
 void Student::setDegreeProgram(DegreeProgram newDegreeProgram)
 {
   this->degreeProgram = newDegreeProgram;
 }
+
 void Student::print()
 {
   cout << this->getStudentID() << "\t";
