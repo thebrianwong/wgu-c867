@@ -3,15 +3,15 @@
 #include <iostream>
 using namespace std;
 
-// #include "student.cpp"
+#include "student.cpp"
+// #include "student.h"
 #include "roster.cpp"
 // #include "roster.h"
 
-void parseStudentData(const string studentData[], Roster classRoster)
+void parseStudentData(const string studentData[], Roster &classRoster)
 {
   int i;
   const int numOfStudents = 5;
-
   for (i = 0; i < numOfStudents; ++i)
   {
     string studentInfoString = studentData[i];
@@ -76,7 +76,6 @@ void parseStudentData(const string studentData[], Roster classRoster)
       }
       infoIndex += 1;
     }
-    cout << studentID << firstName << lastName << emailAddress << age << day1 << day2 << day3 << degreeProgram << endl;
     classRoster.add(studentID, firstName, lastName, emailAddress, age, day1, day2, day3, degreeProgram);
   }
 }
@@ -91,18 +90,15 @@ int main()
        "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
        "A5,Brian,Wong,bwong28@wgu.edu,26,30,35,40,SOFTWARE"};
 
-  // cout << studentID << endl;
-  // cout << studentID << firstName << lastName << email << age << day1 << day2 << day3 << degreeProgram << endl;
-
-  // Student myStudent("A1", "John", "Smith", "John1989@gm ail.com", 20, 30, 35, 40, NETWORK);
-
-  // myStudent.print();
-
   // Requirement F1
+  cout << "Application Introduction:" << endl
+       << endl;
   cout << "Course Title: Scripting and Programming - Applications - C867" << endl;
   cout << "Programming Language: C++" << endl;
   cout << "WGU Student ID: 011147336" << endl;
-  cout << "Name: Brian Wong" << endl;
+  cout << "Name: Brian Wong" << endl
+       << endl;
+  ;
 
   // Requirement F2
   Roster classRoster;
@@ -110,6 +106,29 @@ int main()
   parseStudentData(studentData, classRoster);
 
   classRoster.printAll();
+
+  classRoster.printInvalidEmails();
+
+  int i;
+
+  cout << "Average Days:" << endl;
+  for (i = 1; i <= 5; ++i)
+  {
+    string prefixID = "A";
+    string suffixID = to_string(i);
+    string studentID = prefixID + suffixID;
+    classRoster.printAverageDaysInCourse(studentID);
+  }
+  cout << endl;
+
+  cout << "Students in the Software degree program." << endl;
+  classRoster.printByDegreeProgram(SOFTWARE);
+
+  classRoster.remove("A3");
+
+  classRoster.printAll();
+
+  classRoster.remove("A3");
 
   return 0;
 }
