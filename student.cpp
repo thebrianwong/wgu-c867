@@ -19,6 +19,12 @@ Student::Student(string studentID, string firstName, string lastName, string ema
   this->degreeProgram = degreeProgram;
 }
 
+Student::Student()
+{
+  this->studentID = "Invalid";
+  this->firstName = "Skip Empty Student";
+}
+
 string Student::getStudentID()
 {
   return this->studentID;
