@@ -8,6 +8,7 @@ using namespace std;
 #include "roster.cpp"
 // #include "roster.h"
 
+// Requirement E2
 void parseStudentData(const string studentData[], Roster &classRoster)
 {
   int i;
@@ -76,6 +77,7 @@ void parseStudentData(const string studentData[], Roster &classRoster)
       }
       infoIndex += 1;
     }
+    // Requirement F3
     classRoster.add(studentID, firstName, lastName, emailAddress, age, day1, day2, day3, degreeProgram);
   }
 }
@@ -105,6 +107,7 @@ int main()
 
   parseStudentData(studentData, classRoster);
 
+  // Requirement F4
   classRoster.printAll();
 
   classRoster.printInvalidEmails();

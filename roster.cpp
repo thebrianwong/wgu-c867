@@ -8,7 +8,7 @@ using namespace std;
 // #include "student.cpp"
 
 // Requirement E3
-Roster::~Roster()
+Roster::~Roster() // Requirement F5
 {
   int i;
   for (i = 0; i < 5; ++i)

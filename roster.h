@@ -14,7 +14,7 @@ public: // Requirement E3
   void printAverageDaysInCourse(string studentID);
   void printInvalidEmails();
   void printByDegreeProgram(DegreeProgram degreeProgram);
-  Student *classRosterArray[5];
+  Student *classRosterArray[5]; // Requirement E1
 };
 
 #endif
