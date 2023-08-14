@@ -117,10 +117,28 @@ void Student::setDegreeProgram(DegreeProgram newDegreeProgram)
 
 void Student::print()
 {
+  DegreeProgram degreeProgram = this->getDegreeProgram();
+  string degreeProgramString;
+  switch (degreeProgram)
+  {
+  case SECURITY:
+    degreeProgramString = "SECURITY";
+    break;
+  case NETWORK:
+    degreeProgramString = "NETWORK";
+    break;
+  case SOFTWARE:
+    degreeProgramString = "SOFTWARE";
+    break;
+
+  default:
+    break;
+  }
+
   cout << this->getStudentID() << "\t";
   cout << "First Name: " << this->getFirstName() << "\t";
   cout << "Last Name: " << this->getLastName() << "\t";
   cout << "Age: " << this->getAge() << "\t";
-  cout << "daysInCourse: {" << this->getDaysInCourse1() << ", " << this->getDaysInCourse2() << ", " << this->getDaysInCourse3() << "} ";
-  cout << "Degree Program: " << this->getDegreeProgram() << "." << endl;
+  cout << "daysInCourse: {" << this->getDaysInCourse1() << ", " << this->getDaysInCourse2() << ", " << this->getDaysInCourse3() << "}\t";
+  cout << "Degree Program: " << degreeProgramString << endl;
 }
