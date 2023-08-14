@@ -117,6 +117,7 @@ void Student::setDegreeProgram(DegreeProgram newDegreeProgram)
 
 void Student::print()
 {
+  // Get the corresponding string from each enum
   DegreeProgram degreeProgram = this->getDegreeProgram();
   string degreeProgramString;
   switch (degreeProgram)
@@ -135,10 +136,10 @@ void Student::print()
     break;
   }
 
-  cout << this->getStudentID() << "\t";
+  cout << "Student ID: " << this->getStudentID() << "\t";
   cout << "First Name: " << this->getFirstName() << "\t";
   cout << "Last Name: " << this->getLastName() << "\t";
   cout << "Age: " << this->getAge() << "\t";
-  cout << "daysInCourse: {" << this->getDaysInCourse1() << ", " << this->getDaysInCourse2() << ", " << this->getDaysInCourse3() << "}\t";
+  cout << "Days In Courses: {" << this->getDaysInCourse1() << ", " << this->getDaysInCourse2() << ", " << this->getDaysInCourse3() << "}\t";
   cout << "Degree Program: " << degreeProgramString << endl;
 }
