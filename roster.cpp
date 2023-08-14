@@ -5,113 +5,89 @@ using namespace std;
 // #include "degree.h"
 // #include "student.h"
 #include "roster.h"
-#include "student.cpp"
+// #include "student.cpp"
 
 // Requirement E3
-// Roster::Roster()
-// {
-//   classRosterArray[0] = nullptr;
-//   classRosterArray[1] = nullptr;
-//   classRosterArray[2] = nullptr;
-//   classRosterArray[3] = nullptr;
-//   classRosterArray[4] = nullptr;
-// }
+Roster::~Roster()
+{
+  int i;
+  for (i = 0; i < 5; ++i)
+  {
+    delete classRosterArray[i];
+    classRosterArray[i] = nullptr;
+    cout << "Releasing memory allocated for student " << i + 1 << "." << endl;
+  }
+}
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
 {
+  // this->classRosterArray[currentArrayIndex] = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
+  // Student testStudent = *classRosterArray[currentArrayIndex];
+  // this->currentArrayIndex += 1;
 
-  classRosterArray[++currentArrayIndex] = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-
-  /*
-  // Student *newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-  // cout << newStudent->getStudentID() << endl;
-  // cout << classRosterArray << endl;
-  // cout << classRosterArray[0]->getFirstName() << endl;
-  // cout << classRosterArray[0] << endl;
-  // if (!classRosterArray[0])
+  Student *newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
   if (studentID == "A1")
   {
-    // classRosterArray[0] = newStudent;
-    classRosterArray[0] = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-    cout << classRosterArray[0] << endl;
-    // Student test = *classRosterArray[0];
-    // cout << test.getStudentID() << endl;
+    classRosterArray[0] = newStudent;
   }
-  // else if (classRosterArray[1] == NULL)
-  // else if (!classRosterArray[1])
   else if (studentID == "A2")
   {
-    // classRosterArray[1] = newStudent;
-    classRosterArray[1] = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-    cout << classRosterArray[1] << endl;
+    classRosterArray[1] = newStudent;
   }
-  // else if (classRosterArray[2] == NULL)
-  // else if (!classRosterArray[2])
   else if (studentID == "A3")
   {
-    // classRosterArray[2] = newStudent;
-    classRosterArray[2] = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-    cout << classRosterArray[2] << endl;
+    classRosterArray[2] = newStudent;
   }
-  // else if (classRosterArray[3] == NULL)
-  // else if (!classRosterArray[3])
   else if (studentID == "A4")
   {
-    // classRosterArray[3] = newStudent;
-    classRosterArray[3] = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-    cout << classRosterArray[3] << endl;
+    classRosterArray[3] = newStudent;
   }
-  // else if (classRosterArray[4] == NULL)
-  // else if (!classRosterArray[4])
   else if (studentID == "A5")
   {
-    // classRosterArray[4] = newStudent;
-    classRosterArray[4] = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-    cout << classRosterArray[4] << endl;
+    classRosterArray[4] = newStudent;
   }
-
-  */
 }
+
 void Roster::remove(string studentID)
 {
+  cout << "Attempting to remove student with ID " << studentID << "." << endl;
+
   int i;
   int rosterArrayLength = 5;
   for (i = 0; i < rosterArrayLength; ++i)
   {
-    Student currentStudent = *classRosterArray[i];
-    // Student currentStudent = classRosterArray[i];
-    string currentStudentID = currentStudent.getStudentID();
+    Student *currentStudent = classRosterArray[i];
+    string currentStudentID = currentStudent->getStudentID();
     if (currentStudentID == studentID)
     {
-      delete &classRosterArray[i];
+      delete classRosterArray[i];
+      classRosterArray[i] = new Student();
+      cout << "Student successfully removed." << endl
+           << endl;
       return;
     }
   }
-  cout << "A student with an ID of " << studentID << " could not be found." << endl;
+  cout << "A student with an ID of " << studentID << " could not be found." << endl
+       << endl;
 }
+
 void Roster::printAll()
 {
+  cout << "Current Students:" << endl;
+
   int i;
   int rosterArrayLength = 5;
   for (i = 0; i < rosterArrayLength; ++i)
   {
-    cout << "error here?" << endl;
-    // cout << &classRosterArray[i] << endl;
-    cout << currentArrayIndex << endl;
-    // cout << &classRosterArray << endl;
-    cout << classRosterArray[0] << endl;
-    cout << classRosterArray[1] << endl;
-    cout << classRosterArray[2] << endl;
-    cout << classRosterArray[3] << endl;
-    cout << classRosterArray[4] << endl;
-    // Student *currentStudentPointer = classRosterArray[i];
-    // Student *currentStudentPointer = classRosterArray[i];
-    // Student currentStudent = *currentStudentPointer;
-    // cout << currentStudent.getAge() << endl;
-    // cout << Roster::classRosterArray[i]->getAge() << endl;
-    classRosterArray[i]->print();
+    if (classRosterArray[i]->getFirstName() == "Skip Empty Student")
+    {
+      continue;
+    }
+    this->classRosterArray[i]->print();
   }
+  cout << endl;
 }
+
 void Roster::printAverageDaysInCourse(string studentID)
 {
   int i;
@@ -119,7 +95,6 @@ void Roster::printAverageDaysInCourse(string studentID)
   for (i = 0; i < rosterArrayLength; ++i)
   {
     Student currentStudent = *classRosterArray[i];
-    // Student currentStudent = classRosterArray[i];
     string currentStudentID = currentStudent.getStudentID();
     if (currentStudentID == studentID)
     {
@@ -131,40 +106,44 @@ void Roster::printAverageDaysInCourse(string studentID)
       return;
     }
   }
-  cout << "A student with an ID of " << studentID << " could not be found." << endl;
+  cout << "A student with an ID of " << studentID << " could not be found." << endl
+       << endl;
+  ;
 }
+
 void Roster::printInvalidEmails()
 {
+  cout << "Invalid Emails:" << endl;
+
   int i;
   int rosterArrayLength = 5;
-  cout << "Invalid Emails" << endl;
   for (i = 0; i < rosterArrayLength; ++i)
   {
     Student currentStudent = *classRosterArray[i];
-    // Student currentStudent = classRosterArray[i];
     string studentEmailAddress = currentStudent.getEmailAddress();
     int hasAtSign = studentEmailAddress.find("@");
     int hasPeriod = studentEmailAddress.find(".");
     int hasWhitespace = studentEmailAddress.find(" ");
-    if ((!hasAtSign) || (!hasPeriod) || (hasWhitespace))
+    if ((hasAtSign == -1) || (hasPeriod == -1) || (hasWhitespace != -1))
     {
       cout << studentEmailAddress << endl;
     }
   }
+  cout << endl;
 }
+
 void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
 {
   int i;
   int rosterArrayLength = 5;
-  cout << "Students in the " << degreeProgram << " degree program." << endl;
   for (i = 0; i < rosterArrayLength; ++i)
   {
     Student currentStudent = *classRosterArray[i];
-    // Student currentStudent = classRosterArray[i];
     DegreeProgram studentDegreeProgram = currentStudent.getDegreeProgram();
     if (studentDegreeProgram == degreeProgram)
     {
       currentStudent.print();
     }
   }
+  cout << endl;
 }
