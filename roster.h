@@ -9,6 +9,7 @@
 class Roster
 {
 public: // Requirement E3
+  static const int numOfStudents = 5;
   ~Roster();
   void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram);
   void remove(string studentID);
@@ -16,12 +17,8 @@ public: // Requirement E3
   void printAverageDaysInCourse(string studentID);
   void printInvalidEmails();
   void printByDegreeProgram(DegreeProgram degreeProgram);
-  Student *classRosterArray[5]; // Requirement E1
-  // move parser func here, pass in string
   void parseStudentInfo(string studentInfo);
-
-private:
-  const int numOfStudents = 5;
+  Student *classRosterArray[numOfStudents]; // Requirement E1
 };
 
 #endif

@@ -1,16 +1,9 @@
-
-using namespace std;
-
-// #include "degree.h"
-// #include "student.h"
 #include "roster.h"
-// #include "student.cpp"
 
 // Requirement E3
 Roster::~Roster() // Requirement F5
 {
-  int i;
-  for (i = 0; i < 5; ++i)
+  for (int i = 0; i < Roster::numOfStudents; ++i)
   {
     delete classRosterArray[i];
     classRosterArray[i] = nullptr;
@@ -20,10 +13,6 @@ Roster::~Roster() // Requirement F5
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
 {
-  // this->classRosterArray[currentArrayIndex] = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-  // Student testStudent = *classRosterArray[currentArrayIndex];
-  // this->currentArrayIndex += 1;
-
   Student *newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
   if (studentID == "A1")
   {
@@ -51,9 +40,7 @@ void Roster::remove(string studentID)
 {
   cout << "Attempting to remove student with ID " << studentID << "." << endl;
 
-  int i;
-  int rosterArrayLength = 5;
-  for (i = 0; i < rosterArrayLength; ++i)
+  for (int i = 0; i < Roster::numOfStudents; ++i)
   {
     Student *currentStudent = classRosterArray[i];
     string currentStudentID = currentStudent->getStudentID();
@@ -74,9 +61,7 @@ void Roster::printAll()
 {
   cout << "Current Students:" << endl;
 
-  int i;
-  int rosterArrayLength = 5;
-  for (i = 0; i < rosterArrayLength; ++i)
+  for (int i = 0; i < Roster::numOfStudents; ++i)
   {
     if (classRosterArray[i]->getFirstName() == "Skip Empty Student")
     {
@@ -89,9 +74,7 @@ void Roster::printAll()
 
 void Roster::printAverageDaysInCourse(string studentID)
 {
-  int i;
-  int rosterArrayLength = 5;
-  for (i = 0; i < rosterArrayLength; ++i)
+  for (int i = 0; i < Roster::numOfStudents; ++i)
   {
     Student currentStudent = *classRosterArray[i];
     string currentStudentID = currentStudent.getStudentID();
@@ -114,15 +97,13 @@ void Roster::printInvalidEmails()
 {
   cout << "Invalid Emails:" << endl;
 
-  int i;
-  int rosterArrayLength = 5;
-  for (i = 0; i < rosterArrayLength; ++i)
+  for (int i = 0; i < Roster::numOfStudents; ++i)
   {
     Student currentStudent = *classRosterArray[i];
     string studentEmailAddress = currentStudent.getEmailAddress();
-    int hasAtSign = studentEmailAddress.find("@");
-    int hasPeriod = studentEmailAddress.find(".");
-    int hasWhitespace = studentEmailAddress.find(" ");
+    unsigned long hasAtSign = studentEmailAddress.find("@");
+    unsigned long hasPeriod = studentEmailAddress.find(".");
+    unsigned long hasWhitespace = studentEmailAddress.find(" ");
     if ((hasAtSign == -1) || (hasPeriod == -1) || (hasWhitespace != -1))
     {
       cout << studentEmailAddress << endl;
@@ -133,9 +114,7 @@ void Roster::printInvalidEmails()
 
 void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
 {
-  int i;
-  int rosterArrayLength = 5;
-  for (i = 0; i < rosterArrayLength; ++i)
+  for (int i = 0; i < Roster::numOfStudents; ++i)
   {
     Student currentStudent = *classRosterArray[i];
     DegreeProgram studentDegreeProgram = currentStudent.getDegreeProgram();
@@ -149,5 +128,54 @@ void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
 
 void Roster::parseStudentInfo(string studentInfo)
 {
-  cout << "from parsing funciton" << endl;
+  size_t rightIndex = studentInfo.find(",");
+  string studentID = studentInfo.substr(0, rightIndex);
+
+  size_t leftIndex = rightIndex + 1;
+  rightIndex = studentInfo.find(",", leftIndex);
+  string firstName = studentInfo.substr(leftIndex, rightIndex - leftIndex);
+
+  leftIndex = rightIndex + 1;
+  rightIndex = studentInfo.find(",", leftIndex);
+  string lastName = studentInfo.substr(leftIndex, rightIndex - leftIndex);
+
+  leftIndex = rightIndex + 1;
+  rightIndex = studentInfo.find(",", leftIndex);
+  string emailAddress = studentInfo.substr(leftIndex, rightIndex - leftIndex);
+
+  leftIndex = rightIndex + 1;
+  rightIndex = studentInfo.find(",", leftIndex);
+  int age = stoi(studentInfo.substr(leftIndex, rightIndex - leftIndex));
+
+  leftIndex = rightIndex + 1;
+  rightIndex = studentInfo.find(",", leftIndex);
+  int daysInCourse1 = stoi(studentInfo.substr(leftIndex, rightIndex - leftIndex));
+
+  leftIndex = rightIndex + 1;
+  rightIndex = studentInfo.find(",", leftIndex);
+  int daysInCourse2 = stoi(studentInfo.substr(leftIndex, rightIndex - leftIndex));
+
+  leftIndex = rightIndex + 1;
+  rightIndex = studentInfo.find(",", leftIndex);
+  int daysInCourse3 = stoi(studentInfo.substr(leftIndex, rightIndex - leftIndex));
+
+  leftIndex = rightIndex + 1;
+  rightIndex = studentInfo.find(",", leftIndex);
+  DegreeProgram degreeProgram;
+  string degreeProgramString = studentInfo.substr(leftIndex, rightIndex - leftIndex);
+
+  if (degreeProgramString == "SECURITY")
+  {
+    degreeProgram = SECURITY;
+  }
+  else if (degreeProgramString == "NETWORK")
+  {
+    degreeProgram = NETWORK;
+  }
+  else
+  {
+    degreeProgram = SOFTWARE;
+  }
+
+  Roster::add(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
 }
