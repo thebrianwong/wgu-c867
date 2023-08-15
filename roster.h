@@ -1,7 +1,9 @@
 #ifndef ROSTER_H
 #define ROSTER_H
 
-// #include "degree.h"
+#include <string>
+#include <iostream>
+#include "degree.h"
 #include "student.h"
 
 class Roster
@@ -15,6 +17,11 @@ public: // Requirement E3
   void printInvalidEmails();
   void printByDegreeProgram(DegreeProgram degreeProgram);
   Student *classRosterArray[5]; // Requirement E1
+  // move parser func here, pass in string
+  void parseStudentInfo(string studentInfo);
+
+private:
+  const int numOfStudents = 5;
 };
 
 #endif

@@ -1,5 +1,4 @@
-#include <string>
-#include <iostream>
+
 using namespace std;
 
 // #include "degree.h"
@@ -98,9 +97,9 @@ void Roster::printAverageDaysInCourse(string studentID)
     string currentStudentID = currentStudent.getStudentID();
     if (currentStudentID == studentID)
     {
-      int daysInCourse1 = currentStudent.getDaysInCourse1();
-      int daysInCourse2 = currentStudent.getDaysInCourse2();
-      int daysInCourse3 = currentStudent.getDaysInCourse3();
+      int daysInCourse1 = currentStudent.getDaysInCourses()[0];
+      int daysInCourse2 = currentStudent.getDaysInCourses()[1];
+      int daysInCourse3 = currentStudent.getDaysInCourses()[2];
       double averageDaysInCourses = (daysInCourse1 + daysInCourse2 + daysInCourse3) / 3;
       cout << "Student ID " << studentID << " has an average of " << averageDaysInCourses << " days remaining in their courses." << endl;
       return;
@@ -146,4 +145,9 @@ void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
     }
   }
   cout << endl;
+}
+
+void Roster::parseStudentInfo(string studentInfo)
+{
+  cout << "from parsing funciton" << endl;
 }

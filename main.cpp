@@ -3,11 +3,13 @@
 #include <iostream>
 using namespace std;
 
+// #include "degree.h"
 #include "student.cpp"
 // #include "student.h"
 #include "roster.cpp"
 // #include "roster.h"
 
+// move to Roster, follow cohort 3 video
 // Requirement E2
 void parseStudentData(const string studentData[], Roster &classRoster)
 {
@@ -90,7 +92,7 @@ int main()
        "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
        "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
        "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
-       "A5,Brian,Wong,bwong28@wgu.edu,26,30,35,40,SOFTWARE"};
+       "A5,Brian,Wong ,bwong28@wgu.edu,26,30,35,40,SOFTWARE"};
 
   // Requirement F1
   cout << "Application Introduction:" << endl
@@ -105,33 +107,41 @@ int main()
   // Requirement F2
   Roster classRoster;
 
+  // loop through students and call Roster parse function, and pass student string
   parseStudentData(studentData, classRoster);
+
+  // int i;
+
+  // for (i = 0; i < 5; ++i)
+  // {
+  //   classRoster.parseStudentInfo(studentData[i]);
+  // }
 
   // Requirement F4
   classRoster.printAll();
 
-  classRoster.printInvalidEmails();
+  // classRoster.printInvalidEmails();
 
-  int i;
+  // int i;
 
-  cout << "Average Days:" << endl;
-  for (i = 1; i <= 5; ++i)
-  {
-    string prefixID = "A";
-    string suffixID = to_string(i);
-    string studentID = prefixID + suffixID;
-    classRoster.printAverageDaysInCourse(studentID);
-  }
-  cout << endl;
+  // cout << "Average Days:" << endl;
+  // for (i = 1; i <= 5; ++i)
+  // {
+  //   string prefixID = "A";
+  //   string suffixID = to_string(i);
+  //   string studentID = prefixID + suffixID;
+  //   classRoster.printAverageDaysInCourse(studentID);
+  // }
+  // cout << endl;
 
-  cout << "Students in the Software degree program." << endl;
-  classRoster.printByDegreeProgram(SOFTWARE);
+  // cout << "Students in the Software degree program." << endl;
+  // classRoster.printByDegreeProgram(SOFTWARE);
 
-  classRoster.remove("A3");
+  // classRoster.remove("A3");
 
-  classRoster.printAll();
+  // classRoster.printAll();
 
-  classRoster.remove("A3");
+  // classRoster.remove("A3");
 
   return 0;
 }
