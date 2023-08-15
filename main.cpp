@@ -30,6 +30,7 @@ int main()
   // Requirement F2
   Roster classRoster;
 
+  // Requirement E2
   for (int i = 0; i < Roster::numOfStudents; ++i)
   {
     classRoster.parseStudentInfo(studentData[i]);
@@ -58,6 +59,10 @@ int main()
   classRoster.printAll();
 
   classRoster.remove("A3");
+
+  //  Requirement G
+  cout << "End of application. Thank you. Goodbye." << endl
+       << endl;
 
   return 0;
 }
